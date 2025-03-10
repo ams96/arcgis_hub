@@ -1,7 +1,7 @@
 async function searchArcGIS() {
     let query = document.getElementById("searchInput").value.trim();
-    let groupId1 = "cd0dc9bcfcd74d80b84545cec3f29e7e";
-    let groupId2 = " 739da2491b674accadf423a011c8c72c";
+    let groupId1 = "ea72855a87fb4898bc5d1810589761ce";
+    let groupId2 = "077c20f4c75546ebb35bda0bd568dd35";
 
 
        if (query === "") {
