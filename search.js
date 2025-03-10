@@ -36,3 +36,11 @@ async function searchArcGIS() {
             document.getElementById("results").innerHTML = "<li>Error loading search results.</li>";
         });
 }
+
+function resetSearch() {
+    // Clear the search input
+    document.getElementById("searchInput").value = "";
+
+    // Clear the search results
+    document.getElementById("results").innerHTML = "";
+}
