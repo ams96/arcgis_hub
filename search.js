@@ -38,9 +38,6 @@ async function searchArcGIS() {
 }
 
 function resetSearch() {
-    // Clear the search input
     document.getElementById("searchInput").value = "";
-
-    // Clear the search results
     document.getElementById("results").innerHTML = "";
 }
