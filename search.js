@@ -52,6 +52,7 @@ fetch(url)
         console.error("Error fetching results:", error);
         document.getElementById("results").innerHTML = "<li>Error loading search results. Check console for more details.</li>";
     });
+}
 
 function resetSearch() {
     document.getElementById("searchInput").value = "";
