@@ -14,44 +14,44 @@ async function searchArcGIS() {
     // Log the URL to the console for debugging
     console.log("Constructed URL: ", url);
     
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                // Check if the response status is not ok
-                console.error(`Error: Network response was not ok, status: ${response.status}`);
-                throw new Error(`Error fetching data: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            let resultsList = document.getElementById("results");
-            resultsList.innerHTML = "";
+fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            console.error(`Error: Network response was not ok, status: ${response.status}`);
+            throw new Error(`Error fetching data: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Log the response to check its structure
+        console.log("API Response Data:", data);
 
-            if (data.results.length === 0) {
-                resultsList.innerHTML = "<li>No results found.</li>";
-                return;
-            }
+        let resultsList = document.getElementById("results");
+        resultsList.innerHTML = "";
 
-            // Loop through the results and display them
-            data.results.forEach(item => {
-                let listItem = document.createElement("li");
-                let link = document.createElement("a");
+        // Check if results are present in the response
+        if (!data.results || data.results.length === 0) {
+            resultsList.innerHTML = "<li>No results found.</li>";
+            return;
+        }
 
-                // Handle the URL: if item.url is not available, build the link manually
-                link.href = item.url || `https://sdi.liser.lu/portal/home/item.html?id=${item.id}`;
-                link.target = "_blank";
-                link.textContent = item.title;
+        // Loop through the results and display them
+        data.results.forEach(item => {
+            let listItem = document.createElement("li");
+            let link = document.createElement("a");
 
-                listItem.appendChild(link);
-                resultsList.appendChild(listItem);
-            });
-        })
-        .catch(error => {
-            // Handle errors in the fetch process
-            console.error("Error fetching results:", error);
-            document.getElementById("results").innerHTML = "<li>Error loading search results. Check console for more details.</li>";
+            link.href = item.url || `https://sdi.liser.lu/portal/home/item.html?id=${item.id}`;
+            link.target = "_blank";
+            link.textContent = item.title;
+
+            listItem.appendChild(link);
+            resultsList.appendChild(listItem);
         });
-}
+    })
+    .catch(error => {
+        console.error("Error fetching results:", error);
+        document.getElementById("results").innerHTML = "<li>Error loading search results. Check console for more details.</li>";
+    });
 
 function resetSearch() {
     document.getElementById("searchInput").value = "";
