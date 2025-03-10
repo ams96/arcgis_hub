@@ -24,7 +24,7 @@ async function searchArcGIS() {
             data.results.forEach(item => {
                 let listItem = document.createElement("li");
                 let link = document.createElement("a");
-                link.href = item.url || `https://www.arcgis.com/home/item.html?id=${item.id}`;
+                link.href = item.url || `https://sdi.liser.lu/portal/home/item.html?id=${item.id}`;
                 link.target = "_blank";
                 link.textContent = item.title;
                 listItem.appendChild(link);
