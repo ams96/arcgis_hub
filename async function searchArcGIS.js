@@ -1,27 +1,41 @@
 async function searchArcGIS() {
     let query = document.getElementById("searchInput").value.trim();
+    let groupId1 = "cd0dc9bcfcd74d80b84545cec3f29e7e";
+    let groupId2 = " 739da2491b674accadf423a011c8c72c";
     if (!query) return;
 
-    let url = `https://www.arcgis.com/sharing/rest/search?q=${query}*&f=json`;
+    let url = `https://www.arcgis.com/sharing/rest/search?f=json&q=${query} AND (group:${groupId1} OR group:${groupId2})`;
 
-    try {
-        let response = await fetch(url);
-        let data = await response.json();
-
-        let resultsList = document.getElementById("results");
-        resultsList.innerHTML = "";
-
-        if (data.results && data.results.length > 0) {
-            data.results.forEach(item => {
-                let li = document.createElement("li");
-                li.innerHTML = `<a href="${item.url}" target="_blank">${item.title}</a>`;
-                resultsList.appendChild(li);
-            });
-        } else {
-            resultsList.innerHTML = "<li>Aucun résultat trouvé</li>";
-        }
-    } catch (error) {
-        console.error("Erreur lors de la recherche :", error);
+       if (query === "") {
+        alert("Please enter a search term.");
+        return;
     }
+
+    let url = `https://www.arcgis.com/sharing/rest/search?f=json&q=${query} AND (group:${groupId1} OR group:${groupId2})`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            let resultsList = document.getElementById("results");
+            resultsList.innerHTML = ""; // Clear previous results
+
+            if (data.results.length === 0) {
+                resultsList.innerHTML = "<li>No results found.</li>";
+                return;
+            }
+
+            data.results.forEach(item => {
+                let listItem = document.createElement("li");
+                let link = document.createElement("a");
+                link.href = item.url || `https://www.arcgis.com/home/item.html?id=${item.id}`;
+                link.target = "_blank";
+                link.textContent = item.title;
+                listItem.appendChild(link);
+                resultsList.appendChild(listItem);
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching results:", error);
+            document.getElementById("results").innerHTML = "<li>Error loading search results.</li>";
+        });
 }
-console.log("JavaScript file is connected!");
