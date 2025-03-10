@@ -14,13 +14,13 @@ async function searchArcGIS() {
         .then(response => response.json())
         .then(data => {
             let resultsList = document.getElementById("results");
-            resultsList.innerHTML = ""; // Clear previous results
+            resultsList.innerHTML = "";
 
             if (data.results.length === 0) {
                 resultsList.innerHTML = "<li>No results found.</li>";
                 return;
             }
-
+//check URL sdi.liser.lu/portal
             data.results.forEach(item => {
                 let listItem = document.createElement("li");
                 let link = document.createElement("a");
