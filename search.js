@@ -7,8 +7,10 @@ async function searchArcGIS() {
         alert("Please enter a search term.");
         return;
     }
+
+    let token = "z03igA4ddPZKlLcgJgWv7_hPmH2pw92lY44xVlatrbzZwyoYjdplSa8PD7TtG6IwLCXSJLA2cfNunDxy-dD8ceVTv7BRxC4-hgRsfpWPwDkLcCHg78NJhR3lk-m-yCvFWArb79FPBIZAsUtDNIKR5Vvheb1Sm8h2zMpUC6rxPdFK_aVgQ4h0R5ihGtyqIwe4"
 //check URL sdi.liser.lu/portal and OR
-    let url = `https://sdi.liser.lu/portal/sharing/rest/search?f=json&q=${query}* AND (group:${groupId1} OR group:${groupId2})`;
+    let url = `https://sdi.liser.lu/portal/sharing/rest/search?f=json&q=${query}* AND (group:${groupId1} OR group:${groupId2})&token=${token}`;
     
     fetch(url)
         .then(response => response.json())
