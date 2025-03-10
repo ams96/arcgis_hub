@@ -10,8 +10,6 @@ async function searchArcGIS() {
         return;
     }
 
-    let url = `https://www.arcgis.com/sharing/rest/search?f=json&q=${query} AND (group:${groupId1} OR group:${groupId2})`;
-
     fetch(url)
         .then(response => response.json())
         .then(data => {
