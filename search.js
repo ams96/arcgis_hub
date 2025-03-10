@@ -2,7 +2,6 @@ async function searchArcGIS() {
     let query = document.getElementById("searchInput").value.trim();
     let groupId1 = "cd0dc9bcfcd74d80b84545cec3f29e7e";
     let groupId2 = " 739da2491b674accadf423a011c8c72c";
-    if (!query) return;
 
     let url = `https://www.arcgis.com/sharing/rest/search?f=json&q=${query} AND (group:${groupId1} OR group:${groupId2})`;
 
