@@ -7,7 +7,7 @@ async function searchArcGIS() {
         alert("Please enter a search term.");
         return;
     }
-//check URL sdi.liser.lu/portal
+//check URL sdi.liser.lu/portal and OR
     let url = `https://sdi.liser.lu/portal/sharing/rest/search?f=json&q=${query} OR (group:${groupId1} OR group:${groupId2})`;
     
     fetch(url)
