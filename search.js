@@ -3,13 +3,14 @@ async function searchArcGIS() {
     let groupId1 = "cd0dc9bcfcd74d80b84545cec3f29e7e";
     let groupId2 = " 739da2491b674accadf423a011c8c72c";
 
-    let url = `https://www.arcgis.com/sharing/rest/search?f=json&q=${query} AND (group:${groupId1} OR group:${groupId2})`;
 
        if (query === "") {
         alert("Please enter a search term.");
         return;
     }
 
+    let url = `https://www.arcgis.com/sharing/rest/search?f=json&q=${query} AND (group:${groupId1} OR group:${groupId2})`;
+    
     fetch(url)
         .then(response => response.json())
         .then(data => {
