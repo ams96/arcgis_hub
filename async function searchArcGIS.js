@@ -24,3 +24,4 @@ async function searchArcGIS() {
         console.error("Erreur lors de la recherche :", error);
     }
 }
+console.log("JavaScript file is connected!");
