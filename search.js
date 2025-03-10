@@ -1,5 +1,5 @@
 async function searchArcGIS() {
-    let query = document.getElementById("searchInput").value.trim();
+    let query = document.getElementById("searchInput").value.trim().toLowerCase();
     let groupId1 = "ea72855a87fb4898bc5d1810589761ce";
     let groupId2 = "077c20f4c75546ebb35bda0bd568dd35";
     
@@ -8,7 +8,7 @@ async function searchArcGIS() {
         return;
     }
 //check URL sdi.liser.lu/portal and OR
-    let url = `https://sdi.liser.lu/portal/sharing/rest/search?f=json&q=${query} AND (group:${groupId1} OR group:${groupId2})`;
+    let url = `https://sdi.liser.lu/portal/sharing/rest/search?f=json&q=*${query}* AND (group:${groupId1} OR group:${groupId2})`;
     
     fetch(url)
         .then(response => response.json())
